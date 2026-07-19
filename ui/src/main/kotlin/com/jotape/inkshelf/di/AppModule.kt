@@ -7,6 +7,8 @@ import com.jotape.inkshelf.data.metadata.ComicInfoExtractor
 import com.jotape.inkshelf.data.reader.PageExtractor
 import com.jotape.inkshelf.data.repository.LibraryRepository
 import com.jotape.inkshelf.ui.viewmodel.BibliotecaViewModel
+import com.jotape.inkshelf.ui.viewmodel.BuscaViewModel
+import com.jotape.inkshelf.ui.viewmodel.ConfiguracoesViewModel
 import com.jotape.inkshelf.ui.viewmodel.ContinuarLendoViewModel
 import com.jotape.inkshelf.ui.viewmodel.FavoritosViewModel
 import com.jotape.inkshelf.ui.viewmodel.LeitorViewModel
@@ -39,4 +41,6 @@ val appModule = module {
     viewModel { FavoritosViewModel(get()) }
     viewModel { ContinuarLendoViewModel(get()) }
     viewModel { LeitorViewModel(get(), get()) }
+    viewModel { BuscaViewModel(get()) }
+    viewModel { ConfiguracoesViewModel(get()) }
 }

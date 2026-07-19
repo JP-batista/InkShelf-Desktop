@@ -12,6 +12,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationRail
@@ -29,11 +31,15 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.jotape.inkshelf.model.FolderItem
 import com.jotape.inkshelf.ui.screens.BibliotecaScreen
+import com.jotape.inkshelf.ui.screens.BuscaScreen
+import com.jotape.inkshelf.ui.screens.ConfiguracoesScreen
 import com.jotape.inkshelf.ui.screens.ContinuarLendoScreen
 import com.jotape.inkshelf.ui.screens.FavoritosScreen
 import com.jotape.inkshelf.ui.screens.LeitorScreen
 import com.jotape.inkshelf.ui.theme.LocalInkPalette
 import com.jotape.inkshelf.ui.viewmodel.BibliotecaViewModel
+import com.jotape.inkshelf.ui.viewmodel.BuscaViewModel
+import com.jotape.inkshelf.ui.viewmodel.ConfiguracoesViewModel
 import com.jotape.inkshelf.ui.viewmodel.ContinuarLendoViewModel
 import com.jotape.inkshelf.ui.viewmodel.FavoritosViewModel
 import com.jotape.inkshelf.ui.viewmodel.LeitorViewModel
@@ -50,6 +56,8 @@ private enum class InkSection(val label: String, val icon: ImageVector) {
     BIBLIOTECA("Biblioteca", Icons.AutoMirrored.Filled.MenuBook),
     CONTINUAR("Continuar", Icons.Default.PlayArrow),
     FAVORITOS("Favoritos", Icons.Default.Favorite),
+    BUSCA("Buscar", Icons.Default.Search),
+    CONFIGURACOES("Ajustes", Icons.Default.Settings),
 }
 
 @Composable
@@ -62,6 +70,8 @@ fun InkShelfApp(
     val biblioteca = koinViewModel<BibliotecaViewModel>()
     val favoritos = koinViewModel<FavoritosViewModel>()
     val continuar = koinViewModel<ContinuarLendoViewModel>()
+    val busca = koinViewModel<BuscaViewModel>()
+    val configuracoes = koinViewModel<ConfiguracoesViewModel>()
     val leitor = koinViewModel<LeitorViewModel>()
 
     val leitorState by leitor.uiState.collectAsState()
@@ -132,6 +142,41 @@ fun InkShelfApp(
                     onOpenFile = { onOpenFile(it.id) },
                     onToggleFileFavorite = { favoritos.setFileFavorite(it, !it.isFavorite) },
                     onToggleFolderFavorite = { favoritos.setFolderFavorite(it, !it.isFavorite) },
+                )
+            }
+
+            InkSection.BUSCA -> {
+                val state by busca.uiState.collectAsState()
+                val query by busca.currentQuery.collectAsState()
+                BuscaScreen(
+                    state = state,
+                    query = query,
+                    onQueryChange = busca::onQueryChange,
+                    onClear = busca::clear,
+                    onOpenFolder = openFolderInLibrary,
+                    onOpenFile = { onOpenFile(it.id) },
+                    onToggleFileFavorite = { busca.setFileFavorite(it, !it.isFavorite) },
+                    onToggleFolderFavorite = { busca.setFolderFavorite(it, !it.isFavorite) },
+                )
+            }
+
+            InkSection.CONFIGURACOES -> {
+                val state by configuracoes.uiState.collectAsState()
+                val storage by configuracoes.storage.collectAsState()
+                ConfiguracoesScreen(
+                    state = state,
+                    storage = storage,
+                    onDarkThemeChange = configuracoes::setDarkTheme,
+                    onThemeChange = configuracoes::setThemeId,
+                    onColumnsChange = configuracoes::setColumns,
+                    onCacheLimitChange = configuracoes::setCacheLimitMb,
+                    onAddRoot = {
+                        FolderPicker.chooseDirectory()?.let(biblioteca::addLibraryRoot)
+                    },
+                    onRemoveRoot = configuracoes::removeRoot,
+                    onClearPageCache = configuracoes::clearPageCache,
+                    onClearAllCache = configuracoes::clearAllCache,
+                    onRefreshStorage = configuracoes::refreshStorage,
                 )
             }
         }

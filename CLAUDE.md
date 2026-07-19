@@ -56,8 +56,10 @@ transformá-lo num módulo KMP compartilhado com o Android.
 - **Fase 4 — concluída.** Leitor de imagem: `LeitorViewModel` + `LeitorScreen`, com navegação
   por roda do mouse e teclado, zoom (Ctrl+roda), arrasto, tela cheia (F11), retomada da posição
   e marcação automática de lido. 11 testes de integração.
-- **Fases 5–7** — telas restantes (Início, Configurações, Estatísticas, Histórico, Busca),
-  acabamento desktop, Microsoft Store.
+- **Fase 5 — em andamento.** Prontas: Busca (nome + metadados de ComicInfo) e Configurações
+  (tema, cor de destaque, largura dos cards, pastas da biblioteca, armazenamento e limpeza de
+  cache). Faltam: Início, Estatísticas, Histórico, Marcadores e os hubs de personagens.
+- **Fases 6–7** — acabamento desktop (menu nativo, ícone, memória de janela), Microsoft Store.
 
 ## Convenções e diferenças em relação ao mobile
 
