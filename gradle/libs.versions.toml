@@ -8,7 +8,9 @@ room = "2.8.4"
 sqlite = "2.7.0"
 
 # UI
-navigation = "2.9.8"
+# A variante multiplataforma (org.jetbrains.androidx) tem numeração própria e vai só até 2.9.2 —
+# as versões mais novas do version catalog do mobile são do artefato androidx.*, que é Android-only.
+navigation = "2.9.2"
 lifecycle = "2.11.0"
 coil = "3.5.0"
 koin = "4.2.2"

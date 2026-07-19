@@ -20,5 +20,25 @@ dependencies {
     }
     api(libs.compose.material.icons.extended)
 
+    // Navegação e ViewModel: as variantes `org.jetbrains.androidx.*` do version catalog são as
+    // multiplataforma — as `androidx.*` do mobile só existem para Android.
+    api(libs.androidx.navigation.compose)
+    api(libs.androidx.lifecycle.viewmodel.compose)
+    api(libs.androidx.lifecycle.runtime.compose)
+
+    // Carregamento de capas a partir de arquivos em disco.
+    api(libs.coil.compose)
+
+    api(libs.koin.core)
+    api(libs.koin.compose)
+    api(libs.koin.compose.viewmodel)
+
     api(libs.kotlinx.coroutines.swing)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+}
+
+tasks.test {
+    useJUnit()
 }
