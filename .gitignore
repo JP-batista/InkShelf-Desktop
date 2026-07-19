@@ -1,0 +1,20 @@
+.gradle/
+build/
+**/build/
+.kotlin/
+
+# IDE
+*.iml
+.idea/
+!.idea/codeStyles/
+
+# Local
+local.properties
+.DS_Store
+
+# Segredos de assinatura — nunca versionar
+*.jks
+*.keystore
+*.pfx
+keystore.properties
+signing.properties

@@ -1,0 +1,63 @@
+[versions]
+kotlin = "2.3.21"
+compose = "1.11.1"
+coroutines = "1.10.2"
+
+# Dados
+room = "2.8.4"
+sqlite = "2.7.0"
+
+# UI
+navigation = "2.9.8"
+lifecycle = "2.11.0"
+coil = "3.5.0"
+koin = "4.2.2"
+
+# Leitura de arquivos
+junrar = "7.6.0"
+sevenzip = "16.02-2.01"
+pdfbox = "3.0.8"
+
+# Testes
+junit = "4.13.2"
+
+[libraries]
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "coroutines" }
+
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "sqlite" }
+
+androidx-navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
+
+
+# O app mobile usa 102 ícones distintos de material-icons-extended. A JetBrains congelou esse
+# artefato na 1.7.3 (não há build para CMP 1.8+), mas ele continua funcionando com versões novas
+# do Compose — são só assets vetoriais sobre compose-ui. Pinado de propósito.
+compose-material-icons-extended = { group = "org.jetbrains.compose.material", name = "material-icons-extended", version = "1.7.3" }
+
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
+koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koin" }
+
+junrar = { group = "com.github.junrar", name = "junrar", version.ref = "junrar" }
+sevenzip-jbinding = { group = "net.sf.sevenzipjbinding", name = "sevenzipjbinding", version.ref = "sevenzip" }
+sevenzip-jbinding-all = { group = "net.sf.sevenzipjbinding", name = "sevenzipjbinding-all-platforms", version.ref = "sevenzip" }
+pdfbox = { group = "org.apache.pdfbox", name = "pdfbox", version.ref = "pdfbox" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+# A partir da 2.3.0 o KSP deixou de espelhar a versão do Kotlin e passou a ter numeração própria.
+ksp = { id = "com.google.devtools.ksp", version = "2.3.10" }
+room = { id = "androidx.room", version.ref = "room" }
